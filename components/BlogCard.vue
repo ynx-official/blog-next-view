@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useThrottleFn } from '@vueuse/core'
-import type { IArticle } from '~/server/types'
 import { useArticleStore } from '~/store/ArticleStore'
 import { formatTime } from '~/composables/formatTime'
+import type {IArticle} from "~/api/article/types";
 
 const props = defineProps({
   article: {
@@ -13,44 +13,43 @@ const props = defineProps({
 })
 
 const article = ref<IArticle>()
-
 const { one } = useArticleStore()
-
 const preloadArticle = useThrottleFn(() => {
-  one(props.article.shortLink).then((data) => {
+  one(props.article.id).then((data) => {
     article.value = data
   })
 }, 1000)
+
 </script>
 
 <template>
-  <div class="backdrop-blur-sm overflow-hidden card-border" @click="$router.push(`/article/${props.article.shortLink}`)"
+  <div class="backdrop-blur-sm overflow-hidden card-border" @click="$router.push(`/article/${props.article.id}`)"
     @mouseover="preloadArticle()">
     <div class="relative overflow-hidden">
-      <img :src="`${props.article.cover}/comporess1600x900`" alt="cover"
+      <img :src="`${props.article.articleCover}`" alt="cover"
         class="object-cover rounded-tl-md rounded-tr-md shadow h-48 w-full z-0 transform p-2px">
       <div class="p-1 text-right absolute bottom-0 right-0">
-        <UBadge v-for="t in props.article.tags" :key="t" color="gray" variant="solid" class="ml-2 opacity-90" :tag="t">
-          {{ t }}
+        <UBadge v-for="t in props.article.tagVOList" :key="t" color="gray" variant="solid" class="ml-2 opacity-90" :tag="t">
+          {{ t.tagName }}
         </UBadge>
       </div>
     </div>
 
     <div class="p-4 text-left">
       <div class="text-xl font-bold">
-        {{ props.article.title }}
+        {{ props.article.articleTitle }}
       </div>
       <div class="my-2 flex flex-row items-center">
         <div class="text-violet">
-          {{ props.article.views }} views
+          {{ props.article.isTop }} views
         </div>
         <div class="mx-2">/</div>
         <div class="font-bold text-violet">
-          {{ formatTime(props.article.createdAt) }}
+          {{ formatTime(props.article.createTime) }}
         </div>
       </div>
       <div class="mt-2 text-sm">
-        {{ props.article.description }}
+        {{ props.article.articleContent }}
       </div>
     </div>
   </div>

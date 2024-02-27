@@ -9,12 +9,11 @@ import { formatTime } from '~/composables/formatTime'
 import { addHoverEffect } from '~/composables/hoverEffect'
 const route = useRoute()
 
-// @ts-expect-error no error
-const shortLink = route.params.shortLink as string
+const articleId = route.params.id as string
 
 const { one } = useArticleStore()
 
-const article = await one(shortLink)
+const article = one(articleId)
 
 console.warn(article)
 const hasCatalog = ref(false)

@@ -10,8 +10,6 @@ export default defineNuxtConfig({
 		'@nuxt/ui',
 		'@nuxtseo/module',
 		'@formkit/auto-animate/nuxt',
-		'nuxt-mongoose',
-		'nuxt-scheduler',
 		'nuxt-markdown-render',
 	],
 
@@ -30,14 +28,6 @@ export default defineNuxtConfig({
 		enabled: false,
 		showLiveInspections: false,
 		runOnBuild: false,
-	},
-
-	mongoose: {
-		uri: process.env.MONGODB_URI,
-		devtools: true,
-		options: {
-			dbName: 'blog_v2',
-		},
 	},
 
 	site: {
@@ -69,19 +59,6 @@ export default defineNuxtConfig({
 
 	colorMode: {
 		classSuffix: '',
-	},
-
-	nitro: {
-		esbuild: {
-			options: {
-				target: 'esnext',
-			},
-		},
-		prerender: {
-			crawlLinks: false,
-			//   routes: ['/', '/blog', '/shorts', '/project', '/about'],
-			ignore: ['/hi'],
-		},
 	},
 
 	app: {
