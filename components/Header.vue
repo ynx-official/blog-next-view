@@ -107,8 +107,8 @@ const { hasAuth } = useUserStore()
       'justify-between w-80': width > 767 && y > 60,
     }">
       <div class="flex flex-row h-60px w-100px items-center">
-        <img src="https://static.vio.vin/favicon.png/thumbnail"
-          class="ml-4 h-40px w-40px transition-all active:scale-95 hover:scale-105" alt="logo" @click="$router.push('/')">
+        <img src="https://oss.120120.top/logo/%E5%A4%B4%E5%83%8F.jpg"
+          class="favicon-shadow rounded-full shadow-md  ml-4 h-40px w-40px transition-all active:scale-95 hover:scale-105" alt="logo" @click="$router.push('/')">
       </div>
       <div class="violet-cus flex flex-col w-full">
         <Transition name="slide">
@@ -118,7 +118,7 @@ const { hasAuth } = useUserStore()
               {{ article?.articleTitle }}
             </p>
             <p class="text-xs text-gray-500 text-ellipsis overflow-hidden">
-              {{ article?.categoryName }} / {{ article?.id }}
+              {{ article?.categoryName || '创建于' }} / {{ article?.createTime }}
             </p>
           </div>
         </Transition>
