@@ -1,11 +1,10 @@
 <script lang="ts" setup>
-// import { useFixedHeader } from 'vue-use-fixed-header'
 import { useWindowScroll } from '@vueuse/core'
 import { useFixedHeader } from 'vue-use-fixed-header'
 
-import type { IArticle } from '~/server/types'
 import { useArticleStore } from '~/store/ArticleStore'
 import { useUserStore } from '~/store/UserStore'
+import type {IArticle} from "~/api/article/types";
 
 const headerRef = ref(null)
 const route = useRoute()
@@ -24,7 +23,7 @@ const isOpen = ref(true)
 
 const isArticlePage = ref(false)
 
-const shortLink = ref('')
+const shortLink = ref(0)
 
 const article = ref<IArticle>()
 
@@ -42,15 +41,14 @@ watchEffect(() => {
 watchEffect(() => {
   if (route.path.includes('/article/')) {
     isArticlePage.value = true
-    const params = route.params as { shortLink: string }
-    shortLink.value = params.shortLink
+    const params = route.params as { id: number }
+    shortLink.value = params.id
     one(shortLink.value).then((data) => {
       article.value = data
     })
-    if (article.value && article.value.cover) {
+    if (article.value && article.value?.articleCover) {
       if (width.value < 767)
         showTitleY.value = 350
-
       else
         showTitleY.value = 700
     }
@@ -117,10 +115,10 @@ const { hasAuth } = useUserStore()
           <div v-if="y > showTitleY && isArticlePage && width > 767"
             class="text-ellipsis flex flex-col max-w-1000px w-full overflow-hidden justify-start items-start">
             <p class="text-xl font-semibold text-ellipsis overflow-hidden">
-              {{ article?.title }}
+              {{ article?.articleTitle }}
             </p>
             <p class="text-xs text-gray-500 text-ellipsis overflow-hidden">
-              {{ article?.category }} / {{ article?.shortLink }}
+              {{ article?.categoryName }} / {{ article?.id }}
             </p>
           </div>
         </Transition>
@@ -137,37 +135,37 @@ const { hasAuth } = useUserStore()
               }">
               <li :class="{ 'leading-12 text-2xl': !isOpen }">
                 <router-link to="/" class="header-link" @click="isOpen = true">
-                  Home
+                  首页
                 </router-link>
               </li>
               <li :class="{ 'leading-12 text-2xl': !isOpen }">
                 <router-link to="/blog" class="header-link" @click="isOpen = true">
-                  Blog
+                  博客
                 </router-link>
               </li>
               <li :class="{ 'leading-12 text-2xl': !isOpen }">
                 <router-link to="/shorts" class="header-link" @click="isOpen = true">
-                  Short
+                  说说
                 </router-link>
               </li>
               <li :class="{ 'leading-12 text-2xl': !isOpen }">
                 <router-link to="/project" class="header-link" @click="isOpen = true">
-                  Project
+                  项目
                 </router-link>
               </li>
               <li :class="{ 'leading-12 text-2xl': !isOpen }">
                 <router-link to="/friend" class="header-link" @click="isOpen = true">
-                  Friend
+                  友链
                 </router-link>
               </li>
               <li :class="{ 'leading-12 text-2xl': !isOpen }">
                 <router-link to="/about" class="header-link" @click="isOpen = true">
-                  About
+                  关于我
                 </router-link>
               </li>
               <li v-if="hasAuth()" :class="{ 'leading-12 text-2xl': !isOpen }">
                 <router-link to="/violet" class="header-link" @click="isOpen = true">
-                  Admin
+                  管理后台
                 </router-link>
               </li>
               <li :class="{ 'mr-4 mt-2 leading-12 text-2xl flex w-full flex-row items-center justify-end': !isOpen }"

@@ -15,9 +15,9 @@ const props = defineProps({
 const article = ref<IArticle>()
 const { one } = useArticleStore()
 const preloadArticle = useThrottleFn(() => {
-  one(props.article.id).then((data) => {
-    article.value = data
-  })
+  // one(props.article.id).then((data) => {
+  //   article.value = data
+  // })
 }, 1000)
 
 </script>

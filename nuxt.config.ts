@@ -1,4 +1,3 @@
-import process from 'node:process';
 import { appDescription } from './constants/index';
 
 export default defineNuxtConfig({
@@ -31,8 +30,8 @@ export default defineNuxtConfig({
 	},
 
 	site: {
-		url: 'https://vio.vin',
-		name: '薇尔薇',
+		url: 'https://mrsunshine.cn',
+		name: '魚的小屋',
 		description:
 			'A Web Developer. Code for Fun. AKA ZZSLL, Violet, Vio, VioVin, Lnbiuc, kunkida, hi@lnbiuc.com',
 		defaultLocale: 'en',
@@ -85,7 +84,20 @@ export default defineNuxtConfig({
 		},
 	},
 
+	runtimeConfig: {
+		public: {
+			// 公共运行时配置，可以在客户端访问
+			apiURL: process.env.NUXT_API_URL,
+			// 其他公共配置...
+		},
+		private: {
+			// 私有运行时配置，只能在服务器端访问
+			apiKey: process.env.NUXT_API_KEY,
+			// 其他私有配置...
+		},
+	},
+
 	devtools: {
 		enabled: true,
-	},
+	}
 });

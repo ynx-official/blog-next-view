@@ -1,11 +1,12 @@
 import { hash } from 'ohash'
-import process from "node:process";
+import { useRuntimeConfig } from '#app';
 
 const fetch = async (url: string, options?: any, headers?: any) => {
 
   try {
     // 你的接口地址
-    const reqUrl = process.env.VITE_BASE_URL + url
+    const runtimeConfig = useRuntimeConfig();
+    const reqUrl = runtimeConfig.public.apiURL + url
     console.log("[请求地址]: "+reqUrl)
 
     // 不设置key，始终拿到的都是第一个请求的值，参数一样则不会进行第二次请求
@@ -17,7 +18,7 @@ const fetch = async (url: string, options?: any, headers?: any) => {
 
     const result = data.value as any
 
-    console.log("[请求结果]: ", result);
+    //console.log("[请求结果]: ", result);
 
     if (result?.code !== 0) {
       throw createError({

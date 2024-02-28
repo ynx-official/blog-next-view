@@ -1,14 +1,14 @@
 import { defineStore } from 'pinia';
-import {getMenuInfo} from "~/api/article";
+import {getArticleById, getArticlePage} from "~/api/article";
 import type {Ref} from "@vue/reactivity";
 import type {IArticle} from "~/api/article/types";
 
 export const useArticleStore = defineStore('articleStore', () => {
 	const articles: Ref<IArticle[]> = ref([]);
 
-	const article: Record<string, IArticle> = reactive({});
+	const articleMap: Record<string, IArticle> = reactive({});
 	async function getAll() {
-		const res = await getMenuInfo({
+		const res = await getArticlePage({
 			size: 6,
 		});
 		articles.value = [];
@@ -23,14 +23,18 @@ export const useArticleStore = defineStore('articleStore', () => {
 			});
 	}
 
-	async function getOne(shortLink: number) {
-		const { data } = await useFetch<IArticle>(`/api/article/${shortLink}`);
-		if (data.value) article[shortLink] = data.value;
+	async function getOne(articleId: number) {
+		const  data  = await getArticleById(articleId);
+		if (data){
+			articleMap[articleId] = data.data;
+		}
 	}
 
-	async function one(id: number): Promise<IArticle> {
-		if (!article[id]) await getOne(id);
-		return article[id];
+	async function one(articleId: number): Promise<IArticle> {
+		if (!articleMap[articleId]){
+			await getOne(articleId);
+		}
+		return articleMap[articleId];
 	}
 
 	return { getAll,one };

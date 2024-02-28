@@ -58,7 +58,7 @@ await getAll().then((data) => {
         <NuxtLayout name="home">
           <div v-if="articles.length > 0" id="featured">
             <div class="title-font">
-              Featured Article
+              文章列表
             </div>
             <BlogCards :articles="articles.slice(0, 6)" />
             <div class="title-btn">

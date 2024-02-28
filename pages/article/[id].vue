@@ -10,12 +10,13 @@ import { addHoverEffect } from '~/composables/hoverEffect'
 const route = useRoute()
 
 const articleId = route.params.id as string
+console.log('页面的-文章ID: ', articleId);
 
 const { one } = useArticleStore()
 
-const article = one(articleId)
+const article = await one(articleId)
 
-console.warn(article)
+console.warn("页面的请求结果: ",article)
 const hasCatalog = ref(false)
 
 useHead({
@@ -55,9 +56,9 @@ function initTOC() {
 }
 
 const { start, stop } = useTimeoutFn(async () => {
-  useFetch<string>(`/api/article/views/${article?._id}`, {
-    method: 'PUT',
-  })
+  // useFetch<string>(`/api/article/views/${article?.id}`, {
+  //   method: 'PUT',
+  // })
 }, 10000)
 
 onMounted(() => {
@@ -92,15 +93,15 @@ watchEffect(() => {
 
     <Head>
       <Meta
-        :content="article?.tags?.join(',') || 'Violet, Blog, Vue, Nuxt, TypeScript, JavaScript, Node.js, Web, Frontend, Backend, Fullstack, Developer, Programmer, Engineer, Software, Software Engineer, Software Developer, Software Programmer, Software Engineer, Software Developer'"
+        :content="article?.tagVOList.title?.join(',') || 'Violet, Blog, Vue, Nuxt, TypeScript, JavaScript, Node.js, Web, Frontend, Backend, Fullstack, Developer, Programmer, Engineer, Software, Software Engineer, Software Developer, Software Programmer, Software Engineer, Software Developer'"
         name="keywords" />
-      <Meta :content="article?.title || 'Violet\'s Blog'" property="og:title" />
-      <Meta :content="article?.description || 'A blog for sharing knowledge.'" property="og:description" />
+      <Meta :content="article?.articleTitle || 'Violet\'s Blog'" property="og:title" />
+      <Meta :content="article?.articleTitle || 'A blog for sharing knowledge.'" property="og:description" />
       <Meta :content="article?.ogImage || '/og.png'" property="og:image" />
       <Meta content="summary_large_image" name="twitter:card" />
       <Meta content="@lnbiuc" name="twitter:creator" />
-      <Meta :content="article?.title || 'Violet\'s Blog'" name="twitter:title" />
-      <Meta :content="article?.description || 'A blog for sharing knowledge.'" name="twitter:description" />
+      <Meta :content="article?.articleTitle || 'Violet\'s Blog'" name="twitter:title" />
+      <Meta :content="article?.articleTitle || 'A blog for sharing knowledge.'" name="twitter:description" />
       <Meta :content="article?.ogImage || '/og.png'" name="twitter:image" />
     </Head>
     <NuxtLayout name="default">
@@ -108,15 +109,15 @@ watchEffect(() => {
         <NuxtLayout name="home">
           <div class="text-left flex flex-col">
             <Transition name="fade">
-              <img v-if="article?.cover" :src="`${article?.cover}/comporess1600x900`" alt="cover"
+              <img v-if="article?.articleCover" :src="`${article?.articleCover}`" alt="cover"
                 class="cover-image object-cover rounded-lg shadow-md w-full aspect-[16/9] z-10 transition-all">
             </Transition>
 
             <div class="my-6 text-4xl font-bold">
-              {{ article?.title }}
+              {{ article?.articleTitle }}
             </div>
             <div class="mb-1">
-              {{ article?.description }}
+              {{ article?.articleTitle }}
             </div>
             <div class="mt-4 flex flex-row justify-start items-center">
               <div class="i-carbon-view mr-2" />
@@ -125,7 +126,7 @@ watchEffect(() => {
               </div>
               <div class="i-carbon-alarm mx-2 scale-110" />
               <div class="text-violet">
-                {{ formatTime(article?.updatedAt) }}
+                {{ formatTime(article?.updateTime) }}
               </div>
             </div>
             <UDivider class="my-6" />
@@ -133,7 +134,7 @@ watchEffect(() => {
           <div class="pb-10 pt-10 flex flex-row justify-between">
             <div class="max-w-760px w-full">
               <div class="text-left">
-                <MDRender :source="article?.content ? article?.content : ''" @render-finished="initTOC" />
+                <MDRender :source="article?.articleContent ? article?.articleContent : ''" @render-finished="initTOC" />
               </div>
             </div>
             <div v-if="hasCatalog" id="violetToc"
