@@ -34,7 +34,7 @@ export default defineNuxtConfig({
 		name: '魚的小屋',
 		description:
 			'A Web Developer. Code for Fun. AKA ZZSLL, Violet, Vio, VioVin, Lnbiuc, kunkida, hi@lnbiuc.com',
-		defaultLocale: 'en',
+		defaultLocale: 'ch',
 		identity: {
 			type: 'Person',
 		},

@@ -14,8 +14,8 @@ category('project').then((data) => {
 
 useSeoMeta({
   ogImage: '/ogproject.png',
-  twitterTitle: '薇尔薇｜Project',
-  twitterDescription: '薇尔薇 is A Web Developer 🖥. Code for Fun.',
+  twitterTitle: '魚的小屋｜Project',
+  twitterDescription: '魚的小屋 is A Web Developer 🖥. Code for Fun.',
   twitterImage: '/ogproject.png',
   twitterCard: 'summary_large_image',
 })

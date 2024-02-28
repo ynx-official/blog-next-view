@@ -1,4 +1,4 @@
-import { getReq, postReq } from "@/utils/request"
+import { getReq } from "@/utils/request"
 export const getArticlePage = (data: any): Promise<any> =>
    getReq(`blog/article/list`, data)
 

@@ -7,7 +7,7 @@ const fetch = async (url: string, options?: any, headers?: any) => {
     // 你的接口地址
     const runtimeConfig = useRuntimeConfig();
     const reqUrl = runtimeConfig.public.apiURL + url
-    console.log("[请求地址]: "+reqUrl)
+    //console.log("[请求地址]: "+reqUrl)
 
     // 不设置key，始终拿到的都是第一个请求的值，参数一样则不会进行第二次请求
     const key = hash(options + url)

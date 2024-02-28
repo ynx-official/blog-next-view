@@ -31,15 +31,15 @@ const md = '# Violet\n'
 
 useSeoMeta({
   ogImage: '/ogabout.png',
-  twitterTitle: '薇尔薇｜About',
-  twitterDescription: '薇尔薇 is A Web Developer 🖥. Code for Fun.',
+  twitterTitle: '魚的小屋｜About',
+  twitterDescription: '魚的小屋 is A Web Developer 🖥. Code for Fun.',
   twitterImage: '/ogabout.png',
   twitterCard: 'summary_large_image',
 })
 
 useHead({
   htmlAttrs: {
-    lang: 'en',
+    lang: 'ch',
   },
   link: [
     {

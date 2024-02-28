@@ -10,18 +10,16 @@ import { addHoverEffect } from '~/composables/hoverEffect'
 const route = useRoute()
 
 const articleId = route.params.id as string
-console.log('页面的-文章ID: ', articleId);
 
 const { one } = useArticleStore()
 
 const article = await one(articleId)
-
-console.warn("页面的请求结果: ",article)
 const hasCatalog = ref(false)
 
 useHead({
+  title: article.articleTitle,
   htmlAttrs: {
-    lang: 'en',
+    lang: 'ch',
   },
   link: [
     {
@@ -95,12 +93,12 @@ watchEffect(() => {
       <Meta
         :content="article?.tagVOList.title?.join(',') || 'Violet, Blog, Vue, Nuxt, TypeScript, JavaScript, Node.js, Web, Frontend, Backend, Fullstack, Developer, Programmer, Engineer, Software, Software Engineer, Software Developer, Software Programmer, Software Engineer, Software Developer'"
         name="keywords" />
-      <Meta :content="article?.articleTitle || 'Violet\'s Blog'" property="og:title" />
+      <Meta :content="article?.articleTitle || '魚的小屋'" property="og:title" />
       <Meta :content="article?.articleTitle || 'A blog for sharing knowledge.'" property="og:description" />
       <Meta :content="article?.ogImage || '/og.png'" property="og:image" />
       <Meta content="summary_large_image" name="twitter:card" />
       <Meta content="@lnbiuc" name="twitter:creator" />
-      <Meta :content="article?.articleTitle || 'Violet\'s Blog'" name="twitter:title" />
+      <Meta :content="article?.articleTitle || '魚的小屋'" name="twitter:title" />
       <Meta :content="article?.articleTitle || 'A blog for sharing knowledge.'" name="twitter:description" />
       <Meta :content="article?.ogImage || '/og.png'" name="twitter:image" />
     </Head>

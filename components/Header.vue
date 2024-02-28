@@ -81,7 +81,6 @@ onMounted(() => {
       disableScroll()
     else
       enableScroll()
-
     window.addEventListener('resize', handleResize)
   })
 })
@@ -94,6 +93,7 @@ const { hasAuth } = useUserStore()
 </script>
 
 <template>
+  <!--小屏幕-->
   <div id="header" :class="{
     'dark:border-b-[#333] border-b-[#eee] shadow-sm dark:bg-opacity-50 backdrop-blur-md': y > 60,
     'justify-between items-start h-60px': width < 767,
@@ -148,16 +148,16 @@ const { hasAuth } = useUserStore()
                   说说
                 </router-link>
               </li>
-              <li :class="{ 'leading-12 text-2xl': !isOpen }">
-                <router-link to="/project" class="header-link" @click="isOpen = true">
-                  项目
-                </router-link>
-              </li>
-              <li :class="{ 'leading-12 text-2xl': !isOpen }">
-                <router-link to="/friend" class="header-link" @click="isOpen = true">
-                  友链
-                </router-link>
-              </li>
+<!--              <li :class="{ 'leading-12 text-2xl': !isOpen }">-->
+<!--                <router-link to="/project" class="header-link" @click="isOpen = true">-->
+<!--                  项目-->
+<!--                </router-link>-->
+<!--              </li>-->
+<!--              <li :class="{ 'leading-12 text-2xl': !isOpen }">-->
+<!--                <router-link to="/friend" class="header-link" @click="isOpen = true">-->
+<!--                  友链-->
+<!--                </router-link>-->
+<!--              </li>-->
               <li :class="{ 'leading-12 text-2xl': !isOpen }">
                 <router-link to="/about" class="header-link" @click="isOpen = true">
                   关于我
@@ -188,6 +188,7 @@ const { hasAuth } = useUserStore()
     </div>
   </div>
 
+  <!--大屏幕-->
   <div class="flex flex-row justify-center header-hidden-sign">
     <header v-if="width > 767" ref="headerRef" class="Header flex flex-row justify-center" :style="{
       ...styles,
@@ -207,32 +208,32 @@ const { hasAuth } = useUserStore()
         }">
           <li :class="{ 'h-50px text-2xl': !isOpen }">
             <router-link to="/" class="header-link" @click="isOpen = true">
-              Home
+              主页
             </router-link>
           </li>
           <li :class="{ 'h-50px text-2xl': !isOpen }">
             <router-link to="/blog" class="header-link" @click="isOpen = true">
-              Blog
+              博客
             </router-link>
           </li>
           <li :class="{ 'h-50px text-2xl': !isOpen }">
             <router-link to="/shorts" class="header-link" @click="isOpen = true">
-              Short
+              说说
             </router-link>
           </li>
-          <li :class="{ 'h-50px text-2xl': !isOpen }">
-            <router-link to="/project" class="header-link" @click="isOpen = true">
-              Project
-            </router-link>
-          </li>
-          <li :class="{ 'h-50px text-2xl': !isOpen }">
-            <router-link to="/friend" class="header-link" @click="isOpen = true">
-              Friend
-            </router-link>
-          </li>
+<!--          <li :class="{ 'h-50px text-2xl': !isOpen }">-->
+<!--            <router-link to="/project" class="header-link" @click="isOpen = true">-->
+<!--              项目-->
+<!--            </router-link>-->
+<!--          </li>-->
+<!--          <li :class="{ 'h-50px text-2xl': !isOpen }">-->
+<!--            <router-link to="/friend" class="header-link" @click="isOpen = true">-->
+<!--              友链-->
+<!--            </router-link>-->
+<!--          </li>-->
           <li :class="{ 'h-50px text-2xl': !isOpen }">
             <router-link to="/about" class="header-link" @click="isOpen = true">
-              About
+              关于我
             </router-link>
           </li>
           <li v-if="hasAuth()" :class="{ 'h-50px text-2xl': !isOpen }">

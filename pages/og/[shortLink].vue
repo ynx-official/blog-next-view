@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
-import type { IArticle } from '~/server/types'
 import { useArticleStore } from '~/store/ArticleStore'
 import { formatTime } from '~/composables/formatTime'
+import type {IArticle} from "~/api/article/types";
 
 definePageMeta({
   layout: 'empty',

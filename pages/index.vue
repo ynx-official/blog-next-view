@@ -6,8 +6,8 @@ const online = useOnline()
 
 useSeoMeta({
   ogImage: '/og.png',
-  twitterTitle: '薇尔薇',
-  twitterDescription: '薇尔薇 is A Web Developer 🖥. Code for Fun.',
+  twitterTitle: '魚的小屋',
+  twitterDescription: '魚的小屋 is A Web Developer 🖥. Code for Fun.',
   twitterImage: '/og.png',
   twitterCard: 'summary_large_image',
 })

@@ -81,8 +81,8 @@ async function handleSortByChange(selectVal: string) {
 
 useSeoMeta({
   ogImage: '/ogshort.png',
-  twitterTitle: '薇尔薇｜Shorts',
-  twitterDescription: '薇尔薇 is A Web Developer 🖥. Code for Fun.',
+  twitterTitle: '魚的小屋｜Shorts',
+  twitterDescription: '魚的小屋 is A Web Developer 🖥. Code for Fun.',
   twitterImage: '/ogshort.png',
   twitterCard: 'summary_large_image',
 })

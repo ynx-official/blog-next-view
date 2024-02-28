@@ -12,8 +12,8 @@ get().then((res) => {
 
 useSeoMeta({
   ogImage: '/ogabout.png',
-  twitterTitle: '薇尔薇｜Friends',
-  twitterDescription: '薇尔薇 is A Web Developer 🖥. Code for Fun.',
+  twitterTitle: '魚的小屋｜Friends',
+  twitterDescription: '魚的小屋 is A Web Developer 🖥. Code for Fun.',
   twitterImage: '/ogabout.png',
   twitterCard: 'summary_large_image',
 })
@@ -45,7 +45,7 @@ const md = '你可以通过在下方评论来申请友链，只需满足以下�
   + '\n'
   + '本站信息: '
   + '\n'
-  + '  - 名称: 薇尔薇' + '\n'
+  + '  - 名称: 魚的小屋' + '\n'
   + '  - 描述: A Web <Developer />. Code for Fun.' + '\n'
   + '  - 头像: https://vio.vin/favicon.ico' + '\n'
   + '  - 链接: https://vio.vin' + '\n'
