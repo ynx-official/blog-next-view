@@ -9,7 +9,7 @@ export const useArticleStore = defineStore('articleStore', () => {
 	const articleMap: Record<string, IArticle> = reactive({});
 	async function getAll() {
 		const res = await getArticlePage({
-			size: 6,
+			size: 18,
 		});
 		articles.value = [];
 		if (res) {

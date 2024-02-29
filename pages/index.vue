@@ -60,7 +60,7 @@ await getAll().then((data) => {
             <div class="title-font">
               文章列表
             </div>
-            <BlogCards :articles="articles.slice(0, 6)" />
+            <BlogCards :articles="articles" />
             <div class="title-btn">
               <MyButton @click="$router.push('/blog')">
                 See More
